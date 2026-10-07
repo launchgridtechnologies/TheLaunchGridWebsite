@@ -70,7 +70,7 @@
       right: 0;
       width: min(55vw, 760px);
       height: 100vh;
-      background-image: url('launchgrid-earth-bg.png');
+      background-image: url('./assets/images/launchgrid-earth-bg.png');
       background-repeat: no-repeat;
       background-position: right center;
       background-size: auto 100%;
@@ -434,6 +434,96 @@
       .glass-card:hover { transform: none; }
     }
 
+    /* Three-column hardware showcase */
+    .hardware-gateway-card {
+      overflow: hidden;
+      border-radius: 1rem;
+      background: linear-gradient(145deg, rgba(31,60,136,.13) 0%, rgba(10,35,66,.62) 100%);
+      border: 1px solid rgba(255,255,255,.06);
+      border-top: 1px solid rgba(196,154,44,.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform .4s cubic-bezier(.4,0,.2,1), border-color .4s ease;
+    }
+    .hardware-gateway-card:hover { transform: translateY(-5px); border-color: rgba(196,154,44,.42); }
+    .gateway-visual {
+      position: relative; height: 260px; overflow: hidden;
+      background: radial-gradient(circle at 50% 45%, rgba(31,60,136,.55), rgba(5,19,41,.96) 68%);
+    }
+    .gateway-grid {
+      position: absolute; inset: 0; opacity: .22;
+      background-image: linear-gradient(rgba(196,154,44,.28) 1px, transparent 1px), linear-gradient(90deg, rgba(196,154,44,.28) 1px, transparent 1px);
+      background-size: 28px 28px;
+      transform: perspective(500px) rotateX(55deg) scale(1.5); transform-origin: center bottom;
+    }
+    .gateway-device {
+      position: absolute; left: 50%; top: 50%; width: 128px; height: 104px; transform: translate(-50%,-50%);
+      border: 1px solid rgba(236,231,223,.35); border-radius: 10px;
+      background: linear-gradient(145deg, #53606d, #202b35 55%, #101820);
+      box-shadow: 0 20px 40px rgba(0,0,0,.55), 0 0 35px rgba(196,154,44,.16);
+      padding: 10px; z-index: 3;
+    }
+    .gateway-device-top { display:flex; gap:5px; margin-bottom:9px; }
+    .gateway-status { width:6px; height:6px; border-radius:50%; background:#42c78b; box-shadow:0 0 7px rgba(66,199,139,.7); }
+    .gateway-ports { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; }
+    .gateway-ports span { height:12px; border-radius:2px; background:#081018; border:1px solid rgba(255,255,255,.16); box-shadow:inset 0 1px 2px rgba(0,0,0,.8); }
+    .gateway-label { margin-top:8px; color:rgba(236,231,223,.55); font:500 7px/1 'Fira Code',monospace; letter-spacing:.2em; text-align:center; }
+    .gateway-node { position:absolute; width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--gold); background:#051329; border:1px solid rgba(196,154,44,.65); box-shadow:0 0 18px rgba(196,154,44,.12); z-index:4; }
+    .gateway-node-1 { left:11%; top:24%; } .gateway-node-2 { right:10%; top:20%; } .gateway-node-3 { right:17%; bottom:15%; }
+    .gateway-line { position:absolute; height:1px; background:linear-gradient(90deg, transparent, rgba(196,154,44,.8), transparent); transform-origin:left center; z-index:2; }
+    .gateway-line-1 { width:30%; left:25%; top:38%; transform:rotate(11deg); }
+    .gateway-line-2 { width:30%; left:59%; top:37%; transform:rotate(-13deg); }
+    .gateway-line-3 { width:27%; left:57%; top:67%; transform:rotate(28deg); }
+    @media (max-width:639px) { .hardware-gateway-card:hover { transform:none; } .gateway-visual { height:240px; } }
+
+    /* Product image showcase */
+    .product-image-card {
+      overflow: hidden;
+      border-radius: 1rem;
+      background: linear-gradient(145deg, rgba(31,60,136,.10) 0%, rgba(10,35,66,.58) 100%);
+      border: 1px solid rgba(255,255,255,.06);
+      border-top: 1px solid rgba(255,255,255,.11);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform .4s cubic-bezier(.4,0,.2,1), border-color .4s ease;
+    }
+
+    .product-image-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(196,154,44,.4);
+    }
+
+    .product-image-card .product-image-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3 / 2;
+      background: #0A2342;
+    }
+
+    .product-image-card img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform .6s cubic-bezier(.4,0,.2,1);
+    }
+
+    .product-image-card:hover img {
+      transform: scale(1.035);
+    }
+
+    .product-image-card .product-image-overlay {
+      position: absolute;
+      inset: auto 0 0;
+      height: 45%;
+      background: linear-gradient(to top, rgba(5,19,41,.92), transparent);
+      pointer-events: none;
+    }
+
+    @media (max-width: 639px) {
+      .product-image-card:hover { transform: none; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         scroll-behavior: auto !important;
@@ -691,56 +781,134 @@
 
     <!-- HARDWARE & EDGE -->
     <section id="hardware" class="page-section py-16 sm:py-20 lg:py-24">
-      <div class="max-w-4xl mb-10 sm:mb-16">
+      <div class="max-w-4xl mb-10 sm:mb-14">
         <div class="font-mono text-green tracking-widest text-xs sm:text-sm mb-3">
           <i class="fa-solid fa-microchip"></i> VERTICAL 01
         </div>
-        <h2 class="section-title font-extrabold text-white mb-6">Hardware &amp; Edge</h2>
-        <p class="section-copy text-stone/60 font-light leading-relaxed">
-          We are building a portfolio of connected hardware products that combine electronics, embedded intelligence, sensing, and local data processing.
+        <h2 class="section-title font-extrabold text-white mb-5">Hardware &amp; Edge</h2>
+        <p class="section-copy text-stone/60 font-light leading-relaxed max-w-3xl">
+          We build connected hardware that can sense, monitor, communicate, and respond in the real world. Our current product direction spans healthcare, industrial connectivity, and smart homes.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 lg:gap-12">
-        <div class="space-y-5 sm:space-y-6">
-          <div class="glass-card p-5 sm:p-6 rounded-xl flex gap-4 items-start">
-            <i class="fa-solid fa-droplet text-gold text-xl sm:text-2xl mt-1"></i>
-            <div>
-              <h3 class="text-white font-bold text-lg mb-2">SalineSense</h3>
-              <p class="text-stone/60 text-sm leading-relaxed">
-                A saline monitoring system designed for hospital environments, with the goal of making saline status easier to monitor and reducing the need for constant manual checking.
-              </p>
+      <!-- FEATURED PRODUCT / TECHNOLOGY GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 lg:gap-7 mb-10 sm:mb-14">
+
+        <!-- SALINESENSE -->
+        <article class="product-image-card group">
+          <div class="product-image-wrap">
+            <img src="./assets/images/SalineSense.png"
+                 alt="SalineSense saline monitoring system beside a hospital IV saline bag"
+                 loading="lazy"
+                 width="1536"
+                 height="1024">
+            <div class="product-image-overlay"></div>
+            <div class="absolute left-4 bottom-4 z-10">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#051329]/85 border border-gold/40 text-gold text-[10px] font-mono tracking-widest uppercase backdrop-blur-sm">
+                <i class="fa-solid fa-heart-pulse"></i> Healthcare
+              </span>
             </div>
           </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">SalineSense</h3>
+            <p class="text-stone/60 text-sm leading-relaxed">
+              A saline monitoring system designed to make saline status easier to monitor in hospital environments.
+            </p>
+          </div>
+        </article>
 
-          <div class="glass-card p-5 sm:p-6 rounded-xl flex gap-4 items-start">
-            <i class="fa-solid fa-lightbulb text-gold text-xl sm:text-2xl mt-1"></i>
-            <div>
-              <h3 class="text-white font-bold text-lg mb-2">Smart Light Systems</h3>
-              <p class="text-stone/60 text-sm leading-relaxed">
-                Affordable connected lighting products for homes, focused on practical control, automation, and accessible smart-home functionality.
-              </p>
+        <!-- INDUSTRIAL PROTOCOL GATEWAYS -->
+        <article class="hardware-gateway-card group">
+          <div class="gateway-visual">
+            <div class="gateway-grid"></div>
+            <div class="gateway-orbit gateway-orbit-a"></div>
+            <div class="gateway-orbit gateway-orbit-b"></div>
+            <div class="gateway-device">
+              <div class="gateway-device-top">\span class="gateway-status"></span><span class="gateway-status"></span><span class="gateway-status"></span></div>
+              <div class="gateway-ports">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="gateway-label">GATEWAY</div>
+            </div>
+            <div class="gateway-node gateway-node-1"><i class="fa-solid fa-gears"></i></div>
+            <div class="gateway-node gateway-node-2"><i class="fa-solid fa-network-wired"></i></div>
+            <div class="gateway-node gateway-node-3"><i class="fa-solid fa-cloud"></i></div>
+            <div class="gateway-line gateway-line-1"></div>
+            <div class="gateway-line gateway-line-2"></div>
+            <div class="gateway-line gateway-line-3"></div>
+            <div class="absolute left-4 bottom-4 z-10">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#051329]/85 border border-gold/40 text-gold text-[10px] font-mono tracking-widest uppercase backdrop-blur-sm">
+                <i class="fa-solid fa-network-wired"></i> Industrial Connectivity
+              </span>
             </div>
           </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Industrial Protocol Gateways</h3>
+            <p class="text-stone/60 text-sm leading-relaxed">
+              Gateway products designed to help different machines and communication systems exchange data.
+            </p>
+          </div>
+        </article>
 
+        <!-- SMART LIGHTS -->
+        <article class="product-image-card group">
+          <div class="product-image-wrap">
+            <img src="./assets/images/Smart_Light_Systems.png"
+                 alt="Smart light system with modular magnetic track lighting in a modern home interior"
+                 loading="lazy"
+                 width="1536"
+                 height="1024">
+            <div class="product-image-overlay"></div>
+            <div class="absolute left-4 bottom-4 z-10">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#051329]/85 border border-gold/40 text-gold text-[10px] font-mono tracking-widest uppercase backdrop-blur-sm">
+                <i class="fa-solid fa-house"></i> Smart Home
+              </span>
+            </div>
+          </div>
+          <div class="p-5 sm:p-6">
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Smart Light Systems</h3>
+            <p class="text-stone/60 text-sm leading-relaxed">
+              Affordable connected lighting products designed for practical control, automation, and smarter spaces.
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ENGINEERING FOUNDATION -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-7 items-stretch">
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
           <div class="glass-card p-5 sm:p-6 rounded-xl flex gap-4 items-start">
-            <i class="fa-solid fa-microchip text-gold text-xl sm:text-2xl mt-1"></i>
+            <i class="fa-solid fa-microchip text-gold text-xl sm:text-2xl mt-1 shrink-0"></i>
             <div>
               <h3 class="text-white font-bold text-lg mb-2">Embedded Product Engineering</h3>
               <p class="text-stone/60 text-sm leading-relaxed">
-                Electronics, sensors, microcontrollers, firmware, and edge processing form the engineering base behind the product portfolio.
+                Electronics, sensors, microcontrollers, firmware, and edge processing form the engineering base behind our products.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 sm:p-6 rounded-xl flex gap-4 items-start">
+            <i class="fa-solid fa-wifi text-gold text-xl sm:text-2xl mt-1 shrink-0"></i>
+            <div>
+              <h3 class="text-white font-bold text-lg mb-2">Connected by Design</h3>
+              <p class="text-stone/60 text-sm leading-relaxed">
+                Products are designed with connectivity in mind, from local sensing and control to communication with larger systems.
               </p>
             </div>
           </div>
         </div>
 
-        <div class="bg-[#0A2342] border border-white/5 rounded-2xl p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-          <div class="font-mono text-gold text-xs tracking-widest mb-3">PRODUCT FOCUS</div>
-          <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4">Useful Hardware, Not Hardware for Its Own Sake.</h3>
-          <p class="text-stone/60 leading-relaxed mb-8">
-            Our hardware work starts from a practical use case. We design the sensing, electronics, firmware, and connectivity around what the product needs to accomplish in the field.
-          </p>
-          <a href="#contact" class="btn-premium-outline self-start no-underline py-3 px-5 text-sm">Discuss a Requirement</a>
+        <div class="lg:col-span-5 bg-[#0A2342] border border-gold/20 rounded-2xl p-6 sm:p-8 lg:p-9 flex flex-col justify-center relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-40 h-40 rounded-full bg-gold/10 blur-3xl"></div>
+          <div class="relative z-10">
+            <div class="font-mono text-gold text-xs tracking-widest mb-3">PRODUCT FOCUS</div>
+            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4">Useful Hardware, Built for Real Use.</h3>
+            <p class="text-stone/60 leading-relaxed mb-7">
+              We start with a practical problem and design the hardware, firmware, sensing, and connectivity around what the product needs to accomplish.
+            </p>
+            <a href="#contact" class="btn-premium-outline self-start no-underline py-3 px-5 text-sm">Discuss a Requirement</a>
+          </div>
         </div>
       </div>
     </section>
