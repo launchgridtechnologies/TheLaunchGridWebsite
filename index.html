@@ -1,722 +1,1126 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaunchGrid Technologies</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LaunchGrid Technologies develops connected products across Hardware & Edge, Industrial Protocol Gateways, and IoT and Business Solutions. Explore SalineSense, smart home products, industrial connectivity, and IoT systems.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="LaunchGrid Technologies | Connected Products & IoT Systems">
+  <meta property="og:description" content="Product-led engineering across Hardware & Edge, Industrial Protocol Gateways, and IoT and Business Solutions.">
+  <meta property="og:type" content="website">
+  <title>LaunchGrid Technologies | Connected Products & IoT Systems</title>
 
-        // Premium navbar behaviour
-        const navbar=document.getElementById('navbar');
-        function updateNavbar(){
-            if(window.scrollY>40){navbar.classList.add('scrolled');}
-            else{navbar.classList.remove('scrolled');}
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0A2342',
+            indigo: '#1F3C88',
+            gold: '#C49A2C',
+            stone: '#ECE7DF',
+            green: '#1E6F5C'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['Fira Code', 'monospace']
+          },
+          boxShadow: {
+            glow: '0 0 20px rgba(196, 154, 44, 0.3)',
+            glass: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+          }
         }
-        window.addEventListener('scroll',updateNavbar);
+      }
+    };
+  </script>
 
-        // Active nav highlight
-        document.querySelectorAll('.nav-link-custom').forEach(link=>{
-            link.addEventListener('click',()=>{
-                document.querySelectorAll('.nav-link-custom').forEach(l=>l.classList.remove('active-link'));
-                link.classList.add('active-link');
-            });
-        });
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-</script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: '#0A2342',
-                        indigo: '#1F3C88',
-                        gold: '#C49A2C',
-                        stone: '#ECE7DF',
-                        green: '#1E6F5C'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
-                    },
-                    boxShadow: {
-                        'glow': '0 0 20px rgba(196, 154, 44, 0.3)',
-                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
-                    }
-                }
-            }
-        }
-    </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
 
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    :root {
+      --navy: #0A2342;
+      --deep-navy: #051329;
+      --indigo: #1F3C88;
+      --gold: #C49A2C;
+      --stone: #ECE7DF;
+      --green: #1E6F5C;
+    }
 
-    <!-- Custom CSS -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
-        
-        body {
-            background-color: #051329;
-            color: #ECE7DF;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
+    * { box-sizing: border-box; }
 
-        /* Ambient Background Glows */
-        .ambient-glow {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(31,60,136,0.15) 0%, rgba(10,35,66,0) 70%);
-            top: -200px;
-            right: -200px;
-            border-radius: 50%;
-            z-index: -1;
-            pointer-events: none;
-        }
-        .ambient-glow-2 {
-            position: fixed;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(196,154,44,0.05) 0%, rgba(10,35,66,0) 70%);
-            bottom: -400px;
-            left: -200px;
-            border-radius: 50%;
-            z-index: -1;
-            pointer-events: none;
-        }
+    html { scroll-behavior: smooth; }
 
-        /* Technical Grid Overlay */
-        .grid-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
-            pointer-events: none;
-        }
+    body {
+      background: var(--deep-navy);
+      color: var(--stone);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      min-width: 320px;
+    }
 
-        /* Buttons */
-        .btn-premium-solid {
-            background-color: #C49A2C;
-            color: #051329;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 1px solid #C49A2C;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .btn-premium-solid:hover {
-            background-color: #e3b538;
-            box-shadow: 0 0 20px rgba(196, 154, 44, 0.4);
-            transform: translateY(-2px);
-        }
+    /* The earth from the supplied visiting-card artwork is used as a subtle
+       site-wide visual layer. It sits behind content and never affects layout. */
+    .earth-background {
+      position: fixed;
+      z-index: -4;
+      top: 0;
+      right: 0;
+      width: min(55vw, 760px);
+      height: 100vh;
+      background-image: url('launchgrid-earth-bg.png');
+      background-repeat: no-repeat;
+      background-position: right center;
+      background-size: auto 100%;
+      opacity: 0.38;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.35) 20%, #000 55%);
+      mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.35) 20%, #000 55%);
+    }
 
-        .btn-premium-outline {
-            background-color: rgba(196, 154, 44, 0.05);
-            color: #C49A2C;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 12px 30px;
-            border: 1px solid rgba(196, 154, 44, 0.5);
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .btn-premium-outline:hover {
-            background-color: rgba(196, 154, 44, 0.15);
-            border-color: #C49A2C;
-            transform: translateY(-2px);
-        }
+    .earth-vignette {
+      position: fixed;
+      inset: 0;
+      z-index: -5;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 82% 45%, rgba(196,154,44,.06), transparent 28%),
+        linear-gradient(90deg, rgba(5,19,41,1) 0%, rgba(5,19,41,.96) 45%, rgba(5,19,41,.82) 75%, rgba(5,19,41,.72) 100%);
+    }
 
-        /* Glassmorphism Cards */
-        .glass-card {
-            background: linear-gradient(145deg, rgba(31, 60, 136, 0.1) 0%, rgba(10, 35, 66, 0.4) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s ease;
-        }
-        .glass-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(196, 154, 44, 0.4);
-            background: linear-gradient(145deg, rgba(31, 60, 136, 0.15) 0%, rgba(10, 35, 66, 0.6) 100%);
-        }
+    .ambient-glow {
+      position: fixed;
+      width: min(600px, 70vw);
+      height: min(600px, 70vw);
+      background: radial-gradient(circle, rgba(31,60,136,.15) 0%, rgba(10,35,66,0) 70%);
+      top: -200px;
+      right: -200px;
+      border-radius: 50%;
+      z-index: -2;
+      pointer-events: none;
+    }
 
-        /* Navbar Enhancements */
-        .nav-link-custom {
-            color: #ECE7DF;
-            position: relative;
-            padding: 8px 0;
-            transition: color 0.3s ease;
-        }
-        .nav-link-custom::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #C49A2C;
-            transition: width 0.3s ease;
-        }
-        .nav-link-custom:hover, .nav-link-custom.active-link {
-            color: #C49A2C;
-        }
-        .nav-link-custom:hover::after, .nav-link-custom.active-link::after {
-            width: 100%;
-        }
+    .ambient-glow-2 {
+      position: fixed;
+      width: min(800px, 85vw);
+      height: min(800px, 85vw);
+      background: radial-gradient(circle, rgba(196,154,44,.05) 0%, rgba(10,35,66,0) 70%);
+      bottom: -400px;
+      left: -200px;
+      border-radius: 50%;
+      z-index: -2;
+      pointer-events: none;
+    }
 
-        /* SPA Routing */
-        .page-section {
-            display: none;
-            animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        .page-section.active {
-            display: block;
-        }
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: clamp(32px, 4vw, 50px) clamp(32px, 4vw, 50px);
+      z-index: -3;
+      pointer-events: none;
+    }
 
-        /* Process Steps */
-        .process-line {
-            position: absolute;
-            left: 23px;
-            top: 40px;
-            bottom: -20px;
-            width: 2px;
-            background: linear-gradient(to bottom, #1F3C88, transparent);
-        }
-    
+    .btn-premium-solid {
+      background: var(--gold);
+      color: var(--deep-navy);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 1px solid var(--gold);
+      transition: all .3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
 
-        #navbar.scrolled{
-            height:68px!important;
-            background:rgba(5,19,41,.95)!important;
-            box-shadow:0 10px 30px rgba(0,0,0,.35);
-        }
+    .btn-premium-solid:hover {
+      background: #e3b538;
+      box-shadow: 0 0 20px rgba(196,154,44,.4);
+      transform: translateY(-2px);
+    }
 
-        #navbar.scrolled img{
-            height:40px!important;
-            transition:all .35s ease;
-        }
+    .btn-premium-outline {
+      background: rgba(196,154,44,.05);
+      color: var(--gold);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 1px solid rgba(196,154,44,.5);
+      transition: all .3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .group:hover .group-hover\:block{
-            display:block;
-            animation:fadeDropdown .25s ease forwards;
-        }
+    .btn-premium-outline:hover {
+      background: rgba(196,154,44,.15);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
 
-        @keyframes fadeDropdown{
-            from{opacity:0;transform:translateY(10px);}
-            to{opacity:1;transform:translateY(0);}
-        }
+    .glass-card {
+      background: linear-gradient(145deg, rgba(31,60,136,.10) 0%, rgba(10,35,66,.48) 100%);
+      border: 1px solid rgba(255,255,255,.05);
+      border-top: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform .4s cubic-bezier(.4,0,.2,1), border-color .4s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(196,154,44,.4);
+      background: linear-gradient(145deg, rgba(31,60,136,.15) 0%, rgba(10,35,66,.60) 100%);
+    }
+
+    .nav-link-custom {
+      color: var(--stone);
+      position: relative;
+      padding: 8px 0;
+      transition: color .3s ease;
+    }
+
+    .nav-link-custom::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: var(--gold);
+      transition: width .3s ease;
+    }
+
+    .nav-link-custom:hover,
+    .nav-link-custom.active-link { color: var(--gold); }
+
+    .nav-link-custom:hover::after,
+    .nav-link-custom.active-link::after { width: 100%; }
+
+    #navbar {
+      min-height: clamp(70px, 7vw, 88px);
+      transition: all .35s ease;
+    }
+
+    #navbar.scrolled {
+      min-height: 66px;
+      background: rgba(5,19,41,.96) !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    #navbar .brand-logo {
+      height: clamp(38px, 5vw, 58px);
+      width: auto;
+      max-width: min(280px, 27vw);
+      object-fit: contain;
+    }
+
+    #navbar.scrolled .brand-logo { height: clamp(36px, 4.3vw, 48px); }
+
+    .page-section {
+      display: none;
+      animation: fadeUp .55s cubic-bezier(.16,1,.3,1) forwards;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .page-section.active { display: block; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .process-line {
+      position: absolute;
+      left: 23px;
+      top: 40px;
+      bottom: -20px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--indigo), transparent);
+    }
+
+    .hero-title {
+      font-size: clamp(2.35rem, 6vw, 5rem);
+      line-height: 1.04;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      line-height: 1.1;
+    }
+
+    .section-copy {
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+    }
+
+    input, select, textarea {
+      font-size: 16px; /* prevents iOS Safari from zooming the form */
+    }
+
+    /* Contact / visiting-card identity */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(250px, .78fr) minmax(0, 1.45fr);
+      gap: clamp(1rem, 3vw, 2rem);
+      align-items: stretch;
+    }
+
+    .contact-brand {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(145deg, rgba(31,60,136,.13), rgba(10,35,66,.62));
+    }
+
+    .contact-brand-glow {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -100px;
+      top: -90px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196,154,44,.20), rgba(196,154,44,0) 70%);
+      pointer-events: none;
+    }
+
+    .contact-sphere-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .contact-sphere {
+      width: clamp(120px, 15vw, 190px);
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 24px rgba(196,154,44,.20));
+    }
+
+    .contact-brand-name {
+      color: var(--gold);
+      font-weight: 800;
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      letter-spacing: .08em;
+      line-height: 1;
+    }
+
+    .contact-brand-subtitle {
+      color: var(--stone);
+      font-size: clamp(.75rem, 1.2vw, 1rem);
+      letter-spacing: .38em;
+      margin-top: .55rem;
+    }
+
+    .contact-details {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 1.25rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      color: rgba(236,231,223,.72);
+      transition: color .25s ease;
+    }
+
+    .contact-detail:hover {
+      color: var(--gold);
+    }
+
+    .contact-detail-icon {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      border: 1px solid rgba(196,154,44,.35);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: .75rem;
+    }
+
+    .form-input {
+      width: 100%;
+      background: rgba(5,19,41,.50);
+      border: 1px solid rgba(255,255,255,.10);
+      color: #fff;
+      padding: .8rem .9rem;
+      border-radius: .5rem;
+      outline: none;
+      transition: border-color .25s ease, box-shadow .25s ease;
+      font-size: 16px;
+    }
+
+    .form-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(196,154,44,.08);
+    }
+
+    .form-input::placeholder {
+      color: rgba(236,231,223,.35);
+    }
+
+    .form-input option {
+      background: var(--deep-navy);
+      color: var(--stone);
+    }
+
+    .footer-logo {
+      height: clamp(42px, 5vw, 60px);
+      width: auto;
+      max-width: min(250px, 65vw);
+    }
+
+    @media (max-width: 1023px) {
+      .contact-brand {
+        padding: 1.4rem;
+      }
+
+      .contact-sphere {
+        width: 145px;
+      }
+
+      .contact-brand-subtitle {
+        letter-spacing: .28em;
+      }
+
+      .earth-background {
+        width: 90vw;
+        opacity: .20;
+        background-size: auto 82%;
+        background-position: right bottom;
+        -webkit-mask-image: linear-gradient(to left, #000 15%, rgba(0,0,0,.5) 60%, transparent 100%);
+        mask-image: linear-gradient(to left, #000 15%, rgba(0,0,0,.5) 60%, transparent 100%);
+      }
+
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-brand {
+        text-align: center;
+      }
+
+      .contact-brand .contact-detail {
+        justify-content: center;
+      }
+
+      .earth-vignette {
+        background:
+          linear-gradient(90deg, rgba(5,19,41,.98) 0%, rgba(5,19,41,.92) 55%, rgba(5,19,41,.78) 100%);
+      }
+    }
+
+    @media (max-width: 639px) {
+      .earth-background {
+        width: 100vw;
+        height: 75vh;
+        opacity: .15;
+        background-size: auto 75%;
+        background-position: 115% 100%;
+      }
+
+      .earth-vignette {
+        background: linear-gradient(180deg, rgba(5,19,41,.97) 0%, rgba(5,19,41,.90) 65%, rgba(5,19,41,.96) 100%);
+      }
+
+      .glass-card:hover { transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  
+/* LaunchGrid identity logo: tightly cropped transparent asset */
+#navbar .brand-logo,
+#navbar img[alt*="LaunchGrid"] {
+    height: clamp(32px, 3.2vw, 50px) !important;
+    width: auto !important;
+    max-width: min(250px, 24vw) !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    flex: 0 0 auto;
+}
+@media (max-width: 1023px) {
+    #navbar .brand-logo,
+    #navbar img[alt*="LaunchGrid"] {
+        height: 38px !important;
+        max-width: 180px !important;
+    }
+}
+@media (max-width: 420px) {
+    #navbar .brand-logo,
+    #navbar img[alt*="LaunchGrid"] {
+        height: 34px !important;
+        max-width: 155px !important;
+    }
+}
 
 </style>
 </head>
-<body class="flex flex-col min-h-screen">
 
-    <!-- Background Elements -->
-    <div class="grid-overlay"></div>
-    <div class="ambient-glow"></div>
-    <div class="ambient-glow-2"></div>
+<body class="flex min-h-screen flex-col">
+  <div class="earth-vignette"></div>
+  <div class="earth-background" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="ambient-glow-2" aria-hidden="true"></div>
 
-    <!-- PURE TAILWIND DYNAMIC NAVIGATION BAR -->
-    <nav class="sticky top-0 z-50 w-full bg-[#051329]/80 backdrop-blur-xl border-b border-white/5 transition-all duration-500 h-[74px] lg:h-[82px] xl:h-[88px]" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex h-full items-center justify-between">
-                
-                <!-- DYNAMIC LOGO (Size reduced by ~30%) -->
-                <a class="flex items-center h-full shrink-0 no-underline" href="#home">
-                    <img src="HEADER_LOGO_WITH_TEXT.png" alt="LaunchGrid Technologies" class="h-10 sm:h-11 lg:h-12 xl:h-14 w-auto object-contain drop-shadow-2xl transition-all duration-300" onerror="this.outerHTML='<i class=\'fa-solid fa-cube text-gold text-3xl\'></i> <span class=\'text-stone font-bold text-2xl tracking-widest ml-3\'>LAUNCH<span class=\'text-gold\'>GRID</span></span>'">
-                </a>
+  <!-- NAVIGATION -->
+  <nav id="navbar" class="sticky top-0 z-50 w-full bg-[#051329]/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+      <div class="flex min-h-[inherit] items-center justify-between gap-4">
+        <a href="#home" class="flex items-center shrink-0 no-underline" aria-label="LaunchGrid Technologies home">
+          <img src="./assets/images/LaunchGrid_Navbar_Logo.png"
+               alt="LaunchGrid Technologies"
+               class="brand-logo drop-shadow-2xl"
+               width="260"
+               height="174">
+        </a>
 
-                <!-- DESKTOP NAVIGATION LINKS -->
-                <div class="hidden lg:flex items-center gap-8 xl:gap-12 h-full">
-                    <ul class="flex items-center gap-6 xl:gap-10 m-0 p-0 list-none text-sm xl:text-[15px] font-semibold tracking-[0.12em] uppercase transition-all duration-300">
-                        <li><a class="nav-link-custom cursor-pointer no-underline block" href="#home">Home</a></li>
-                        
-                        <!-- Services Dropdown -->
-                        <li class="group relative py-2">
-                            <a class="nav-link-custom cursor-pointer no-underline flex items-center" id="servicesDropdown">
-                                Services <i class="fa-solid fa-chevron-down text-[10px] ml-2"></i>
-                            </a>
-                            <div class="hidden group-hover:block absolute top-full left-0 pt-2 w-64 z-50">
-                                <div class="bg-[#0A2342] border border-white/10 shadow-2xl p-2 rounded-sm">
-                                    <a class="block px-4 py-3 text-stone hover:text-gold hover:bg-white/5 transition-colors text-xs font-semibold no-underline" href="#hardware">Hardware & Electronics</a>
-                                    <a class="block px-4 py-3 text-stone hover:text-gold hover:bg-white/5 transition-colors text-xs font-semibold border-t border-white/5 no-underline" href="#software">Software & Cloud</a>
-                                    <a class="block px-4 py-3 text-stone hover:text-gold hover:bg-white/5 transition-colors text-xs font-semibold border-t border-white/5 no-underline" href="#iot">Industrial IoT</a>
-                                </div>
-                            </div>
-                        </li>
-                        
-                        <li><a class="nav-link-custom cursor-pointer no-underline block" href="#about">About</a></li>
-                        <li><a class="nav-link-custom cursor-pointer no-underline block" href="#contact">Contact</a></li>
-                    </ul>
-                    
-                    <!-- DYNAMIC BUTTON SIZING -->
-                    <a href="#contact" class="btn-premium-solid h-11 px-6 xl:px-8 text-sm font-semibold no-underline transition-all duration-300 flex items-center">
-                        Connect With Us <i class="fa-solid fa-arrow-right ml-1"></i>
-                    </a>
+        <div class="hidden lg:flex items-center gap-[clamp(1rem,2vw,2.5rem)]">
+          <ul class="flex items-center gap-[clamp(1rem,1.7vw,2rem)] m-0 p-0 list-none text-xs xl:text-sm font-semibold tracking-[.10em] uppercase">
+            <li><a class="nav-link-custom no-underline block" href="#home">Home</a></li>
+
+            <li class="group relative py-2">
+              <a class="nav-link-custom no-underline flex items-center" href="#hardware">
+                Services <i class="fa-solid fa-chevron-down text-[9px] ml-2"></i>
+              </a>
+              <div class="hidden group-hover:block absolute top-full left-0 pt-2 w-72 z-50">
+                <div class="bg-[#0A2342] border border-white/10 shadow-2xl p-2 rounded-sm">
+                  <a class="block px-4 py-3 text-stone hover:text-gold hover:bg-white/5 transition-colors text-xs font-semibold no-underline" href="#hardware">Hardware &amp; Edge</a>
+                  <a class="block px-4 py-3 text-stone hover:text-gold hover:bg-white/5 transition-colors text-xs font-semibold border-t border-white/5 no-underline" href="#software">Industrial Protocol Gateways</a>
+                  <a class="block px-4 py-3 text-stone hover:text-gold hover:bg-white/5 transition-colors text-xs font-semibold border-t border-white/5 no-underline" href="#iot">IoT and Business Solutions</a>
                 </div>
+              </div>
+            </li>
 
-                <!-- MOBILE MENU BUTTON -->
-                <div class="lg:hidden">
-                    <button id="mobileMenuBtn" class="text-stone hover:text-gold transition-colors focus:outline-none p-2 text-2xl">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </div>
+            <li><a class="nav-link-custom no-underline block" href="#about">About</a></li>
+            <li><a class="nav-link-custom no-underline block" href="#contact">Contact</a></li>
+          </ul>
 
-            <!-- MOBILE NAVIGATION DROP-DOWN -->
-            <div id="mobileMenu" class="hidden lg:hidden w-full bg-[#051329] border-t border-white/10 pb-6 pt-4 absolute left-0 px-6 shadow-2xl">
-                <ul class="flex flex-col gap-4 list-none p-0 m-0 text-sm font-bold tracking-widest uppercase">
-                    <li><a class="text-stone hover:text-gold block py-2 no-underline nav-mobile-link" href="#home">Home</a></li>
-                    <li class="border-y border-white/5 py-2">
-                        <span class="text-stone/50 block mb-3 text-xs">Services</span>
-                        <a class="text-stone hover:text-gold block py-1 pl-4 no-underline nav-mobile-link" href="#hardware">- Hardware & Electronics</a>
-                        <a class="text-stone hover:text-gold block py-1 pl-4 no-underline nav-mobile-link" href="#software">- Software & Cloud</a>
-                        <a class="text-stone hover:text-gold block py-1 pl-4 no-underline nav-mobile-link" href="#iot">- Industrial IoT</a>
-                    </li>
-                    <li><a class="text-stone hover:text-gold block py-2 no-underline nav-mobile-link" href="#about">About</a></li>
-                    <li><a class="text-stone hover:text-gold block py-2 no-underline nav-mobile-link" href="#contact">Contact</a></li>
-                    <li class="pt-4">
-                        <a href="#contact" class="btn-premium-solid w-full text-center py-3 no-underline nav-mobile-link">Connect With Us</a>
-                    </li>
-                </ul>
-            </div>
+          <a href="#contact" class="btn-premium-solid h-10 xl:h-11 px-4 xl:px-6 text-[11px] xl:text-xs no-underline whitespace-nowrap">
+            Request a Quote <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
-    </nav>
 
-    <!-- Main Content -->
-    <main class="flex-grow w-full max-w-7xl mx-auto px-6 lg:px-8">
-        
-        <!-- ================= HOME PAGE ================= -->
-        <section id="home" class="page-section active">
-            
-            <!-- Hero Banner -->
-            <div class="py-24 md:py-32">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-                    
-                    <!-- Left: Hero Text -->
-                    <div class="col-span-12 lg:col-span-7">
-                        <div class="inline-flex items-center gap-3 px-4 py-2 bg-green/10 border border-green/30 rounded-full font-mono text-green text-xs mb-8">
-                            <span class="relative flex h-2 w-2">
-                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green opacity-75"></span>
-                              <span class="relative inline-flex rounded-full h-2 w-2 bg-green"></span>
-                            </span>
-                            SYSTEMS ENGINEERING FIRM
-                        </div>
-                        <h1 class="text-5xl md:text-6xl xl:text-7xl font-extrabold text-white mb-6 leading-tight tracking-tight">
-                            Engineer <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-200">Connected</span><br>Business Ecosystems.
-                        </h1>
-                        <p class="text-lg md:text-xl text-stone/70 mb-10 max-w-2xl leading-relaxed font-light">
-                            We don't just build software. LaunchGrid integrates custom hardware, industrial communication protocols, and cloud platforms into single, highly reliable operational structures.
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#hardware" class="btn-premium-solid no-underline py-3 px-8">Explore Solutions</a>
-                            <a href="#contact" class="btn-premium-outline no-underline py-3 px-8">Consult With an Engineer</a>
-                        </div>
-                    </div>
+        <button id="mobileMenuBtn"
+                class="lg:hidden text-stone hover:text-gold transition-colors focus:outline-none p-2 text-xl sm:text-2xl"
+                aria-label="Open navigation menu"
+                aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
 
-                    <!-- Right: Standalone Body Logo -->
-                    <div class="col-span-12 lg:col-span-5 flex justify-center lg:justify-end mt-8 lg:mt-0">
-                        <img src="GOLDEN_SPHERE_LOGO.png" alt="LaunchGrid Sphere" class="w-64 sm:w-80 lg:w-full max-w-[450px] object-contain drop-shadow-[0_0_35px_rgba(196,154,44,0.25)] transition-transform duration-700 hover:scale-105" onerror="this.style.display='none'">
-                    </div>
+      <!-- MOBILE MENU -->
+      <div id="mobileMenu" class="hidden lg:hidden w-full bg-[#051329] border-t border-white/10 pb-5 pt-3 absolute left-0 px-4 sm:px-6 shadow-2xl">
+        <ul class="flex flex-col gap-2 list-none p-0 m-0 text-xs sm:text-sm font-bold tracking-widest uppercase">
+          <li><a class="text-stone hover:text-gold block py-3 no-underline nav-mobile-link" href="#home">Home</a></li>
+          <li class="border-y border-white/5 py-2">
+            <span class="text-stone/50 block mb-2 text-[10px]">Services</span>
+            <a class="text-stone hover:text-gold block py-2 pl-3 no-underline nav-mobile-link" href="#hardware">Hardware &amp; Edge</a>
+            <a class="text-stone hover:text-gold block py-2 pl-3 no-underline nav-mobile-link" href="#software">Industrial Protocol Gateways</a>
+            <a class="text-stone hover:text-gold block py-2 pl-3 no-underline nav-mobile-link" href="#iot">IoT and Business Solutions</a>
+          </li>
+          <li><a class="text-stone hover:text-gold block py-3 no-underline nav-mobile-link" href="#about">About</a></li>
+          <li><a class="text-stone hover:text-gold block py-3 no-underline nav-mobile-link" href="#contact">Contact</a></li>
+          <li class="pt-2">
+            <a href="#contact" class="btn-premium-solid w-full text-center py-3 no-underline nav-mobile-link">Request a Quote</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-                </div>
+  <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- HOME -->
+    <section id="home" class="page-section active">
+      <div class="py-16 sm:py-20 lg:py-28">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          <div class="col-span-12 lg:col-span-7">
+            <div class="inline-flex items-center gap-3 px-3 sm:px-4 py-2 bg-green/10 border border-green/30 rounded-full font-mono text-green text-[10px] sm:text-xs mb-6 sm:mb-8">
+              <span class="relative flex h-2 w-2 shrink-0">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-green"></span>
+              </span>
+              PRODUCT-LED TECHNOLOGY COMPANY
             </div>
 
-            <!-- The LaunchGrid Ecosystem (Grid Layout) -->
-            <div class="bg-[#0A2342]/50 border border-white/5 rounded-2xl p-8 md:p-16 mb-24 relative overflow-hidden">
-                <div class="relative z-10">
-                    <div class="mb-16">
-                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">The Complete Infrastructure</h2>
-                        <p class="text-stone/60 max-w-2xl text-lg font-light">Eliminate data silos. We architect the entire pipeline from the physical factory floor to the cloud-based executive dashboard.</p>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <!-- Card 1 -->
-                        <div class="glass-card p-8 rounded-xl group relative overflow-hidden">
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-3xl group-hover:bg-gold/20 transition-all"></div>
-                            <div class="w-14 h-14 bg-indigo/40 border border-indigo flex items-center justify-center rounded-lg mb-6">
-                                <i class="fa-solid fa-microchip text-2xl text-gold"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-white mb-3">Hardware & Edge</h4>
-                            <p class="text-stone/60 text-sm leading-relaxed mb-6">Custom electronics, embedded firmware (C/C++), and sensor integration deployed directly at the operational level.</p>
-                            <a href="#hardware" class="text-gold text-sm font-bold uppercase tracking-wide group-hover:text-white transition-colors no-underline">View Domain <i class="fa-solid fa-arrow-right ml-1"></i></a>
-                        </div>
+            <h1 class="hero-title font-extrabold text-white mb-6 tracking-tight">
+              Building <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-200">Connected Products</span> for the Real World.
+            </h1>
 
-                        <!-- Card 2 -->
-                        <div class="glass-card p-8 rounded-xl group relative overflow-hidden">
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-green/10 rounded-full blur-3xl group-hover:bg-green/20 transition-all"></div>
-                            <div class="w-14 h-14 bg-indigo/40 border border-indigo flex items-center justify-center rounded-lg mb-6">
-                                <i class="fa-solid fa-network-wired text-2xl text-green"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-white mb-3">Industrial Comms</h4>
-                            <p class="text-stone/60 text-sm leading-relaxed mb-6">Reliable protocol gateways ensuring seamless transmission across MQTT, Modbus, CAN, RS-485, and Ethernet.</p>
-                            <a href="#iot" class="text-green text-sm font-bold uppercase tracking-wide group-hover:text-white transition-colors no-underline">View Domain <i class="fa-solid fa-arrow-right ml-1"></i></a>
-                        </div>
+            <p class="text-base sm:text-lg md:text-xl text-stone/70 mb-8 sm:mb-10 max-w-2xl leading-relaxed font-light">
+              LaunchGrid Technologies develops practical hardware, industrial connectivity, and IoT products designed to make physical systems more visible, connected, and useful.
+            </p>
 
-                        <!-- Card 3 -->
-                        <div class="glass-card p-8 rounded-xl group relative overflow-hidden">
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-indigo/20 rounded-full blur-3xl group-hover:bg-indigo/40 transition-all"></div>
-                            <div class="w-14 h-14 bg-indigo/40 border border-indigo flex items-center justify-center rounded-lg mb-6">
-                                <i class="fa-solid fa-cloud text-2xl text-white"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-white mb-3">Cloud & Business Logic</h4>
-                            <p class="text-stone/60 text-sm leading-relaxed mb-6">Scalable platforms, CRM systems, and analytical dashboards that turn raw operational data into strategic power.</p>
-                            <a href="#software" class="text-stone text-sm font-bold uppercase tracking-wide group-hover:text-gold transition-colors no-underline">View Domain <i class="fa-solid fa-arrow-right ml-1"></i></a>
-                        </div>
-                    </div>
-                </div>
+            <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+              <a href="#hardware" class="btn-premium-solid no-underline py-3 px-6 sm:px-8 text-sm">Explore Products</a>
+              <a href="#contact" class="btn-premium-outline no-underline py-3 px-6 sm:px-8 text-sm">Request a Quote</a>
             </div>
+          </div>
 
-            <!-- Engineering Methodology -->
-            <div class="py-24">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 align-items-center">
-                    <div class="col-span-12 lg:col-span-5">
-                        <div class="font-mono text-gold text-sm tracking-widest mb-3">OUR PHILOSOPHY</div>
-                        <h2 class="text-4xl font-bold text-white mb-6">Engineer Before You Build.</h2>
-                        <p class="text-stone/70 mb-10 text-lg font-light leading-relaxed">True scalability requires precision from day one. Our methodology ensures that every line of code and every trace on a PCB serves a distinct, structured business purpose.</p>
-                        
-                        <div class="relative pl-2">
-                            <div class="process-line"></div>
-                            
-                            <div class="relative flex items-start mb-8">
-                                <div class="w-12 h-12 rounded-full bg-[#051329] border-2 border-gold flex items-center justify-center font-bold text-gold z-10 shrink-0">01</div>
-                                <div class="ml-6 mt-2">
-                                    <h5 class="text-white font-bold text-lg mb-1">Understand & Map</h5>
-                                    <p class="text-sm text-stone/50">Analyze operational bottlenecks.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="relative flex items-start mb-8">
-                                <div class="w-12 h-12 rounded-full bg-[#051329] border-2 border-indigo flex items-center justify-center font-bold text-indigo z-10 shrink-0">02</div>
-                                <div class="ml-6 mt-2">
-                                    <h5 class="text-white font-bold text-lg mb-1">Architect Modular Design</h5>
-                                    <p class="text-sm text-stone/50">Structure hardware and software expansion.</p>
-                                </div>
-                            </div>
-
-                            <div class="relative flex items-start">
-                                <div class="w-12 h-12 rounded-full bg-[#051329] border-2 border-green flex items-center justify-center font-bold text-green z-10 shrink-0">03</div>
-                                <div class="ml-6 mt-2">
-                                    <h5 class="text-white font-bold text-lg mb-1">Build & Deploy</h5>
-                                    <p class="text-sm text-stone/50">Launch highly secure, maintainable systems.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-span-12 lg:col-span-7">
-                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop" alt="Engineering Board" class="rounded-xl shadow-glass border border-white/10 opacity-80 w-full object-cover h-[500px]" onerror="this.style.display='none'">
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA -->
-            <div class="bg-gradient-to-r from-[#0A2342] to-[#1F3C88] border border-gold/30 rounded-2xl py-20 px-6 my-24">
-                <div class="text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to upgrade your infrastructure?</h2>
-                    <p class="text-lg text-stone/70 mb-10 max-w-2xl mx-auto font-light">Stop managing fragmented systems. Start scaling with a unified, custom-engineered ecosystem.</p>
-                    <a href="#contact" class="btn-premium-solid py-3 px-8 no-underline">Initiate Project Consultation</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= HARDWARE PAGE ================= -->
-        <section id="hardware" class="page-section py-24">
-            <div class="max-w-4xl mb-16">
-                <div class="font-mono text-green tracking-widest text-sm mb-3"><i class="fa-solid fa-microchip"></i> DOMAIN 01</div>
-                <h2 class="text-5xl font-extrabold text-white mb-6">Electronics & Hardware</h2>
-                <p class="text-xl text-stone/60 font-light leading-relaxed">The physical foundation of connected systems. From initial schematic to final production, we build resilient electronics designed for industrial environments.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="space-y-6">
-                    <div class="glass-card p-6 rounded-xl flex gap-4 items-start">
-                        <i class="fa-solid fa-layer-group text-gold text-2xl mt-1"></i>
-                        <div>
-                            <h4 class="text-white font-bold text-lg mb-2">PCB Design & Validation</h4>
-                            <p class="text-stone/60 text-sm">Multilayer board design, signal integrity analysis, and rigorous environmental validation for manufacturing.</p>
-                        </div>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl flex gap-4 items-start">
-                        <i class="fa-solid fa-memory text-gold text-2xl mt-1"></i>
-                        <div>
-                            <h4 class="text-white font-bold text-lg mb-2">Embedded Systems</h4>
-                            <p class="text-stone/60 text-sm">Custom firmware development ensuring your hardware executes flawlessly with minimal latency and power consumption.</p>
-                        </div>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl flex gap-4 items-start">
-                        <i class="fa-solid fa-industry text-gold text-2xl mt-1"></i>
-                        <div>
-                            <h4 class="text-white font-bold text-lg mb-2">Design for Manufacturing (DFM)</h4>
-                            <p class="text-stone/60 text-sm">Transitioning prototypes into mass production with optimized component sourcing and assembly structuring.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-[#0A2342] border border-white/5 rounded-2xl p-10 flex flex-col justify-center">
-                    <h3 class="text-2xl font-bold text-white mb-4">Physical Meets Digital</h3>
-                    <p class="text-stone/60 leading-relaxed mb-8">
-                        Software cannot function without reliable hardware. We architect the circuitry and embedded communication nodes that allow physical machinery to securely and consistently speak to the cloud.
-                    </p>
-                    <a href="#contact" class="btn-premium-outline self-start no-underline">Discuss Hardware Specs</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= SOFTWARE PAGE ================= -->
-        <section id="software" class="page-section py-24">
-            <div class="max-w-4xl mb-16">
-                <div class="font-mono text-gold tracking-widest text-sm mb-3"><i class="fa-solid fa-code"></i> DOMAIN 02</div>
-                <h2 class="text-5xl font-extrabold text-white mb-6">Cloud Platforms & Software</h2>
-                <p class="text-xl text-stone/60 font-light leading-relaxed">Scalable business applications, automation, and intelligent dashboards that transform raw machine data into operational power.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="order-2 md:order-1 bg-[#0A2342] border border-white/5 rounded-2xl p-10 flex flex-col justify-center">
-                    <h3 class="text-2xl font-bold text-white mb-4">Beyond Standard Web</h3>
-                    <p class="text-stone/60 leading-relaxed mb-8">
-                        A standard website is only a fragment of what modern businesses need. We build comprehensive internal systems, customer portals, and automated data pipelines that eliminate manual workflows.
-                    </p>
-                    <a href="#contact" class="btn-premium-outline self-start no-underline">Discuss Software Needs</a>
-                </div>
-                <div class="order-1 md:order-2 space-y-6">
-                    <div class="glass-card p-6 rounded-xl flex gap-4 items-start">
-                        <i class="fa-solid fa-cloud text-indigo text-2xl mt-1"></i>
-                        <div>
-                            <h4 class="text-white font-bold text-lg mb-2">Custom IoT Cloud Platforms</h4>
-                            <p class="text-stone/60 text-sm">Secure, high-availability architecture designed specifically to handle massive streams of telemetry data.</p>
-                        </div>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl flex gap-4 items-start">
-                        <i class="fa-solid fa-chart-line text-indigo text-2xl mt-1"></i>
-                        <div>
-                            <h4 class="text-white font-bold text-lg mb-2">Analytics Dashboards</h4>
-                            <p class="text-stone/60 text-sm">Visualizing KPIs, tracking health, and generating automated reporting for executive decision-making.</p>
-                        </div>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl flex gap-4 items-start">
-                        <i class="fa-solid fa-robot text-indigo text-2xl mt-1"></i>
-                        <div>
-                            <h4 class="text-white font-bold text-lg mb-2">Workflow Automation</h4>
-                            <p class="text-stone/60 text-sm">Connecting CRM, Lead Management, and operational databases to trigger automated business logic.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= IOT PAGE ================= -->
-        <section id="iot" class="page-section py-24">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <div class="font-mono text-green tracking-widest text-sm mb-3"><i class="fa-solid fa-network-wired"></i> DOMAIN 03</div>
-                <h2 class="text-5xl font-extrabold text-white mb-6">Industrial IoT Solutions</h2>
-                <p class="text-xl text-stone/60 font-light leading-relaxed">Bridging the critical gap between the industrial factory floor and the executive cloud dashboard.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-xl border-t-2 border-t-gold">
-                    <h4 class="text-xl font-bold text-white mb-4">Industrial Monitoring</h4>
-                    <p class="text-stone/60 text-sm leading-relaxed">Real-time oversight of smart devices and sensor integration to track asset health, output efficiency, and anomalies across your entire infrastructure.</p>
-                </div>
-                <div class="glass-card p-8 rounded-xl border-t-2 border-t-indigo">
-                    <h4 class="text-xl font-bold text-white mb-4">Edge Computing</h4>
-                    <p class="text-stone/60 text-sm leading-relaxed">Process data locally for sub-millisecond response times and reduced bandwidth overhead, ensuring critical industrial automation never drops a beat.</p>
-                </div>
-                <div class="glass-card p-8 rounded-xl border-t-2 border-t-green">
-                    <h4 class="text-xl font-bold text-white mb-4">Protocol Gateways</h4>
-                    <p class="text-stone/60 text-sm leading-relaxed">Seamless translation and secure transmission across disparate environments including MQTT, Modbus, CAN, RS-485, Ethernet, BLE, and Wi-Fi.</p>
-                </div>
-            </div>
-            
-            <div class="mt-16 text-center">
-                <a href="#contact" class="btn-premium-solid no-underline py-3 px-8">Engineer Your IoT Ecosystem</a>
-            </div>
-        </section>
-
-        <!-- ================= ABOUT US PAGE ================= -->
-        <section id="about" class="page-section py-24">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 align-items-center min-h-[50vh]">
-                <div class="col-span-12 lg:col-span-7 pr-lg-5">
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8">Precision. Vision. Execution.</h2>
-                    <p class="text-lg text-stone/70 mb-6 leading-relaxed font-light">
-                        LaunchGrid Technologies is a modern engineering company. Founded on a unique convergence of rigorous technical programming architecture and strategic enterprise management, we understand that technology must solve tangible business problems.
-                    </p>
-                    <p class="text-lg text-stone/70 mb-10 leading-relaxed font-light">
-                        Whether validating a localized hardware prototype or deploying a massive, international cloud architecture, our focus remains on long-term scalability and absolute reliability. We don't just write code—we integrate disciplines to build smarter, faster businesses.
-                    </p>
-                    
-                    <h5 class="text-gold font-bold uppercase tracking-widest text-sm mb-4">Our Core Values</h5>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-stone/80 text-sm font-semibold">
-                        <div><i class="fa-solid fa-check text-green mr-2"></i> Engineering Excellence</div>
-                        <div><i class="fa-solid fa-check text-green mr-2"></i> Practical Innovation</div>
-                        <div><i class="fa-solid fa-check text-green mr-2"></i> Absolute Transparency</div>
-                        <div><i class="fa-solid fa-check text-green mr-2"></i> Scalable Architecture</div>
-                    </div>
-                </div>
-                <div class="col-span-12 lg:col-span-5 mt-12 lg:mt-0">
-                    <div class="glass-card p-10 rounded-2xl relative overflow-hidden">
-                        <div class="absolute -top-20 -right-20 w-40 h-40 bg-gold/20 blur-3xl rounded-full"></div>
-                        <h3 class="text-3xl font-bold text-white mb-2">Our Promise</h3>
-                        <div class="w-12 h-1 bg-gold mb-6"></div>
-                        <p class="text-xl text-stone/80 italic font-light leading-relaxed">
-                            "We engineer connected systems that power smarter businesses. Modular design. Absolute reliability. Scalability by default."
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= CONTACT PAGE ================= -->
-        <section id="contact" class="page-section py-24">
-            <div class="max-w-3xl mx-auto text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">Connect With Engineering</h2>
-                <p class="text-xl text-stone/60 font-light">Ready to build intelligent, connected infrastructure? Let's engineer your next solution.</p>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="glass-card p-8 md:p-12 rounded-2xl">
-                    <form onsubmit="event.preventDefault(); alert('Message routing system engineered. Ready for backend integration.');">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <label class="block text-stone/80 text-xs font-bold uppercase tracking-wider mb-2">Full Name</label>
-                                <input type="text" class="w-full bg-[#051329]/50 border border-white/10 text-white p-3 rounded-lg focus:outline-none focus:border-gold transition-colors">
-                            </div>
-                            <div>
-                                <label class="block text-stone/80 text-xs font-bold uppercase tracking-wider mb-2">Company</label>
-                                <input type="text" class="w-full bg-[#051329]/50 border border-white/10 text-white p-3 rounded-lg focus:outline-none focus:border-gold transition-colors">
-                            </div>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label class="block text-stone/80 text-xs font-bold uppercase tracking-wider mb-2">Email Address</label>
-                            <input type="email" class="w-full bg-[#051329]/50 border border-white/10 text-white p-3 rounded-lg focus:outline-none focus:border-gold transition-colors">
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label class="block text-stone/80 text-xs font-bold uppercase tracking-wider mb-2">Project Domain</label>
-                            <select class="w-full bg-[#051329]/50 border border-white/10 text-white p-3 rounded-lg focus:outline-none focus:border-gold transition-colors appearance-none">
-                                <option>Industrial IoT Integration</option>
-                                <option>Hardware & Embedded Systems</option>
-                                <option>Cloud Platform & Business Software</option>
-                                <option>Complete Ecosystem Build</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mb-8">
-                            <label class="block text-stone/80 text-xs font-bold uppercase tracking-wider mb-2">Technical Requirements</label>
-                            <textarea class="w-full bg-[#051329]/50 border border-white/10 text-white p-3 rounded-lg focus:outline-none focus:border-gold transition-colors h-32 resize-none"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn-premium-solid w-full rounded-lg justify-center py-4 text-lg">
-                            Initialize Connection <i class="fa-solid fa-paper-plane ml-2"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-[#051329] border-t border-white/10 pt-16 pb-8 mt-auto relative z-10 w-full">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start mb-12">
-                <div class="col-span-12 md:col-span-5 mb-8 md:mb-0">
-                    <a class="text-white font-bold text-2xl tracking-widest flex items-center mb-4 no-underline" href="#home">
-                        <img src="HEADER_LOGO_WITH_TEXT.png" alt="LaunchGrid Logo" class="h-12 lg:h-16 w-auto object-contain" onerror="this.outerHTML='<i class=\'fa-solid fa-cube text-gold mr-2\'></i> LAUNCHGRID'">
-                    </a>
-                    <p class="text-sm text-stone/50 font-light leading-relaxed max-w-sm">
-                        Engineering connected systems that power smarter businesses. Industrial IoT, Embedded Systems, and Cloud Platforms.
-                    </p>
-                </div>
-                <div class="col-span-12 md:col-span-3 mb-8 md:mb-0">
-                    <h5 class="text-white text-sm font-bold tracking-widest uppercase mb-4">Domains</h5>
-                    <ul class="list-none p-0 space-y-2 text-sm text-stone/60">
-                        <li><a href="#hardware" class="hover:text-gold transition-colors no-underline text-inherit">Hardware & Electronics</a></li>
-                        <li><a href="#software" class="hover:text-gold transition-colors no-underline text-inherit">Cloud & Software</a></li>
-                        <li><a href="#iot" class="hover:text-gold transition-colors no-underline text-inherit">Industrial IoT</a></li>
-                    </ul>
-                </div>
-                <div class="col-span-12 md:col-span-4 md:text-right">
-                    <h5 class="text-white text-sm font-bold tracking-widest uppercase mb-4 md:text-right">Connect</h5>
-                    <div class="flex gap-4 md:justify-end">
-                        <a href="https://linkedin.com" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-stone hover:bg-gold hover:text-[#051329] transition-all no-underline"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://instagram.com" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-stone hover:bg-gold hover:text-[#051329] transition-all no-underline"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#contact" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-stone hover:bg-gold hover:text-[#051329] transition-all no-underline"><i class="fa-solid fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-stone/40 font-mono">
-                <p class="mb-4 md:mb-0">© 2026 LaunchGrid Technologies. All rights reserved.</p>
-                <div class="flex gap-6">
-                    <a href="#home" class="hover:text-stone transition-colors no-underline text-inherit">Privacy Policy</a>
-                    <a href="#home" class="hover:text-stone transition-colors no-underline text-inherit">Terms of Service</a>
-                </div>
-            </div>
+          <div class="col-span-12 lg:col-span-5 flex justify-center lg:justify-end mt-2 lg:mt-0">
+            <img src="./assets/images/GOLDEN_SPHERE_LOGO.png"
+                 alt="LaunchGrid Technologies connected technology emblem"
+                 class="w-56 sm:w-72 md:w-80 lg:w-full max-w-[430px] object-contain drop-shadow-[0_0_35px_rgba(196,154,44,0.25)]"
+                 onerror="this.style.display='none'">
+          </div>
         </div>
-    </footer>
+      </div>
 
-    <!-- SPA Hash Routing Logic & Mobile Menu -->
-    <script>
-        // Mobile Menu Toggle Logic
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileLinks = document.querySelectorAll('.nav-mobile-link');
+      <!-- THREE VERTICALS -->
+      <div class="bg-[#0A2342]/50 border border-white/5 rounded-2xl p-5 sm:p-8 md:p-12 lg:p-16 mb-16 sm:mb-24 relative overflow-hidden">
+        <div class="relative z-10">
+          <div class="mb-10 sm:mb-14">
+            <div class="font-mono text-gold text-xs sm:text-sm tracking-widest mb-3">OUR THREE VERTICALS</div>
+            <h2 class="section-title font-bold text-white mb-4">Technology Built as Products.</h2>
+            <p class="section-copy text-stone/60 max-w-3xl font-light leading-relaxed">
+              Our portfolio is being developed around focused product categories rather than a broad catalogue of unrelated offerings. Each vertical is built around practical engineering, repeatable technology, and real-world use.
+            </p>
+          </div>
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-7 lg:gap-8">
+            <div class="glass-card p-5 sm:p-7 lg:p-8 rounded-xl group relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-3xl group-hover:bg-gold/20 transition-all"></div>
+              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-indigo/40 border border-indigo flex items-center justify-center rounded-lg mb-5 sm:mb-6">
+                <i class="fa-solid fa-microchip text-xl sm:text-2xl text-gold"></i>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold text-white mb-3">Hardware &amp; Edge</h3>
+              <p class="text-stone/60 text-sm leading-relaxed">
+                Connected hardware, embedded electronics, sensor systems, and edge devices developed for practical deployment. Current product work includes SalineSense for hospital saline monitoring and smart lighting systems for homes.
+              </p>
+            </div>
 
-        // Close mobile menu when a link is clicked
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
+            <div class="glass-card p-5 sm:p-7 lg:p-8 rounded-xl group relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-indigo/20 rounded-full blur-3xl group-hover:bg-indigo/40 transition-all"></div>
+              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-indigo/40 border border-indigo flex items-center justify-center rounded-lg mb-5 sm:mb-6">
+                <i class="fa-solid fa-network-wired text-xl sm:text-2xl text-gold"></i>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold text-white mb-3">Industrial Protocol Gateways</h3>
+              <p class="text-stone/60 text-sm leading-relaxed">
+                Product-focused connectivity hardware for moving data between industrial protocols and modern connected systems. Our gateway portfolio is being developed for upcoming product releases.
+              </p>
+            </div>
 
-        // SPA Routing
-        function handleRouting() {
-            let hash = window.location.hash.substring(1) || 'home';
-            if(hash === 'services') hash = 'hardware'; 
+            <div class="glass-card p-5 sm:p-7 lg:p-8 rounded-xl group relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-3xl group-hover:bg-gold/20 transition-all"></div>
+              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-indigo/40 border border-indigo flex items-center justify-center rounded-lg mb-5 sm:mb-6">
+                <i class="fa-solid fa-chart-line text-xl sm:text-2xl text-gold"></i>
+              </div>
+              <h3 class="text-lg sm:text-xl font-bold text-white mb-3">IoT and Business Solutions</h3>
+              <p class="text-stone/60 text-sm leading-relaxed">
+                IoT products and connected business systems that turn device data into useful information, monitoring, and decisions. The portfolio is expanding across connected environments and industry-focused applications.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            document.querySelectorAll('.nav-link-custom').forEach(link => {
-                link.classList.remove('active-link');
-            });
+      <!-- PRODUCT PHILOSOPHY -->
+      <div class="py-12 sm:py-20 lg:py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div class="col-span-12 lg:col-span-5">
+            <div class="font-mono text-gold text-xs sm:text-sm tracking-widest mb-3">OUR APPROACH</div>
+            <h2 class="section-title font-bold text-white mb-6">From Engineering Idea to Repeatable Product.</h2>
+            <p class="text-base sm:text-lg text-stone/70 mb-10 font-light leading-relaxed">
+              We focus on developing products that can be refined, manufactured, deployed, and improved over time. The objective is not simply to demonstrate technology, but to turn useful engineering into dependable products.
+            </p>
 
-            const target = document.getElementById(hash);
-            if(target) {
-                target.classList.add('active');
-                const activeLink = document.querySelector(`.nav-link-custom[href="#${hash}"]`);
-                if(activeLink) activeLink.classList.add('active-link');
-            } else {
-                document.getElementById('home').classList.add('active');
-                document.querySelector('.nav-link-custom[href="#home"]').classList.add('active-link');
-            }
+            <div class="relative pl-2">
+              <div class="process-line"></div>
 
-            window.scrollTo(0, 0);
-        }
+              <div class="relative flex items-start mb-8">
+                <div class="w-12 h-12 rounded-full bg-[#051329] border-2 border-gold flex items-center justify-center font-bold text-gold z-10 shrink-0">01</div>
+                <div class="ml-5 sm:ml-6 mt-2">
+                  <h3 class="text-white font-bold text-base sm:text-lg mb-1">Identify the Problem</h3>
+                  <p class="text-sm text-stone/50">Start with a measurable operational or everyday need.</p>
+                </div>
+              </div>
 
-        window.addEventListener('hashchange', handleRouting);
-        window.addEventListener('DOMContentLoaded', handleRouting);
-    </script>
+              <div class="relative flex items-start mb-8">
+                <div class="w-12 h-12 rounded-full bg-[#051329] border-2 border-indigo flex items-center justify-center font-bold text-indigo z-10 shrink-0">02</div>
+                <div class="ml-5 sm:ml-6 mt-2">
+                  <h3 class="text-white font-bold text-base sm:text-lg mb-1">Engineer the Product</h3>
+                  <p class="text-sm text-stone/50">Combine electronics, firmware, connectivity, and product design.</p>
+                </div>
+              </div>
+
+              <div class="relative flex items-start">
+                <div class="w-12 h-12 rounded-full bg-[#051329] border-2 border-green flex items-center justify-center font-bold text-green z-10 shrink-0">03</div>
+                <div class="ml-5 sm:ml-6 mt-2">
+                  <h3 class="text-white font-bold text-base sm:text-lg mb-1">Validate &amp; Scale</h3>
+                  <p class="text-sm text-stone/50">Refine reliability, usability, production, and deployment.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-12 lg:col-span-7">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop"
+                 alt="Electronics engineering and connected hardware"
+                 loading="lazy"
+                 class="rounded-xl shadow-glass border border-white/10 opacity-80 w-full object-cover h-[260px] sm:h-[380px] lg:h-[500px]"
+                 onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-[#0A2342] to-[#1F3C88] border border-gold/30 rounded-2xl py-12 sm:py-16 lg:py-20 px-5 sm:px-8 my-16 sm:my-24">
+        <div class="text-center">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Have a product or technology requirement?</h2>
+          <p class="text-base sm:text-lg text-stone/70 mb-8 sm:mb-10 max-w-2xl mx-auto font-light">
+            Tell us what you are trying to build, connect, monitor, or improve. We can discuss the relevant product or technology category.
+          </p>
+          <a href="#contact" class="btn-premium-solid py-3 px-6 sm:px-8 no-underline text-sm">Request a Quote</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HARDWARE & EDGE -->
+    <section id="hardware" class="page-section py-16 sm:py-20 lg:py-24">
+      <div class="max-w-4xl mb-10 sm:mb-16">
+        <div class="font-mono text-green tracking-widest text-xs sm:text-sm mb-3">
+          <i class="fa-solid fa-microchip"></i> VERTICAL 01
+        </div>
+        <h2 class="section-title font-extrabold text-white mb-6">Hardware &amp; Edge</h2>
+        <p class="section-copy text-stone/60 font-light leading-relaxed">
+          We are building a portfolio of connected hardware products that combine electronics, embedded intelligence, sensing, and local data processing.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 lg:gap-12">
+        <div class="space-y-5 sm:space-y-6">
+          <div class="glass-card p-5 sm:p-6 rounded-xl flex gap-4 items-start">
+            <i class="fa-solid fa-droplet text-gold text-xl sm:text-2xl mt-1"></i>
+            <div>
+              <h3 class="text-white font-bold text-lg mb-2">SalineSense</h3>
+              <p class="text-stone/60 text-sm leading-relaxed">
+                A saline monitoring system designed for hospital environments, with the goal of making saline status easier to monitor and reducing the need for constant manual checking.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 sm:p-6 rounded-xl flex gap-4 items-start">
+            <i class="fa-solid fa-lightbulb text-gold text-xl sm:text-2xl mt-1"></i>
+            <div>
+              <h3 class="text-white font-bold text-lg mb-2">Smart Light Systems</h3>
+              <p class="text-stone/60 text-sm leading-relaxed">
+                Affordable connected lighting products for homes, focused on practical control, automation, and accessible smart-home functionality.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 sm:p-6 rounded-xl flex gap-4 items-start">
+            <i class="fa-solid fa-microchip text-gold text-xl sm:text-2xl mt-1"></i>
+            <div>
+              <h3 class="text-white font-bold text-lg mb-2">Embedded Product Engineering</h3>
+              <p class="text-stone/60 text-sm leading-relaxed">
+                Electronics, sensors, microcontrollers, firmware, and edge processing form the engineering base behind the product portfolio.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[#0A2342] border border-white/5 rounded-2xl p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
+          <div class="font-mono text-gold text-xs tracking-widest mb-3">PRODUCT FOCUS</div>
+          <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4">Useful Hardware, Not Hardware for Its Own Sake.</h3>
+          <p class="text-stone/60 leading-relaxed mb-8">
+            Our hardware work starts from a practical use case. We design the sensing, electronics, firmware, and connectivity around what the product needs to accomplish in the field.
+          </p>
+          <a href="#contact" class="btn-premium-outline self-start no-underline py-3 px-5 text-sm">Discuss a Requirement</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRIAL PROTOCOL GATEWAYS -->
+    <section id="software" class="page-section py-16 sm:py-20 lg:py-24">
+      <div class="max-w-4xl mb-10 sm:mb-16">
+        <div class="font-mono text-gold tracking-widest text-xs sm:text-sm mb-3">
+          <i class="fa-solid fa-network-wired"></i> VERTICAL 02
+        </div>
+        <h2 class="section-title font-extrabold text-white mb-6">Industrial Protocol Gateways</h2>
+        <p class="section-copy text-stone/60 font-light leading-relaxed">
+          Industrial equipment often operates across different communication standards. Our gateway portfolio is being developed to simplify connectivity between field devices, controllers, networks, and connected applications.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 lg:gap-12">
+        <div class="order-2 md:order-1 bg-[#0A2342] border border-white/5 rounded-2xl p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
+          <div class="font-mono text-gold text-xs tracking-widest mb-3">IN DEVELOPMENT</div>
+          <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4">Industrial Connectivity as a Product Category.</h3>
+          <p class="text-stone/60 leading-relaxed mb-8">
+            We are working toward dedicated protocol gateway products that make it easier to exchange information between industrial communication environments and modern IoT systems.
+          </p>
+          <p class="text-stone/50 text-sm leading-relaxed mb-8">
+            The initial portfolio is planned for the coming months and will evolve around practical protocol-conversion and connectivity requirements.
+          </p>
+          <a href="#contact" class="btn-premium-outline self-start no-underline py-3 px-5 text-sm">Discuss Connectivity</a>
+        </div>
+
+        <div class="order-1 md:order-2 space-y-5 sm:space-y-6">
+          <div class="glass-card p-5 sm:p-6 rounded-xl flex gap-4 items-start">
+            <i class="fa-solid fa-right-left text-gold text-xl sm:text-2xl mt-1"></i>
+            <div>
+              <h3 class="text-white font-bold text-lg mb-2">Protocol Translation</h3>
+              <p class="text-stone/60 text-sm leading-relaxed">
+                Hardware designed to bridge different communication environments while keeping the data path clear and predictable.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 sm:p-6 rounded-xl flex gap-4 items-start">
+            <i class="fa-solid fa-network-wired text-gold text-xl sm:text-2xl mt-1"></i>
+            <div>
+              <h3 class="text-white font-bold text-lg mb-2">Industrial Connectivity</h3>
+              <p class="text-stone/60 text-sm leading-relaxed">
+                Product concepts built around industrial networking and connected-machine requirements.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 sm:p-6 rounded-xl flex gap-4 items-start">
+            <i class="fa-solid fa-cloud-arrow-up text-gold text-xl sm:text-2xl mt-1"></i>
+            <div>
+              <h3 class="text-white font-bold text-lg mb-2">Gateway to IoT</h3>
+              <p class="text-stone/60 text-sm leading-relaxed">
+                A connectivity layer between industrial data sources and higher-level IoT monitoring or business applications.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IOT AND BUSINESS SOLUTIONS -->
+    <section id="iot" class="page-section py-16 sm:py-20 lg:py-24">
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+        <div class="font-mono text-green tracking-widest text-xs sm:text-sm mb-3">
+          <i class="fa-solid fa-chart-line"></i> VERTICAL 03
+        </div>
+        <h2 class="section-title font-extrabold text-white mb-6">IoT and Business Solutions</h2>
+        <p class="section-copy text-stone/60 font-light leading-relaxed">
+          Our IoT portfolio focuses on turning connected devices into useful information. The objective is to make monitoring, automation, and operational data easier to use.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-7 lg:gap-8">
+        <div class="glass-card p-6 sm:p-8 rounded-xl border-t-2 border-t-gold">
+          <div class="w-11 h-11 rounded-lg bg-gold/10 border border-gold/30 flex items-center justify-center mb-5">
+            <i class="fa-solid fa-signal text-gold"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-white mb-4">Connected Monitoring</h3>
+          <p class="text-stone/60 text-sm leading-relaxed">
+            IoT products that collect information from physical environments and present it in a form that is easier to monitor and act on.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 sm:p-8 rounded-xl border-t-2 border-t-indigo">
+          <div class="w-11 h-11 rounded-lg bg-indigo/20 border border-indigo flex items-center justify-center mb-5">
+            <i class="fa-solid fa-chart-column text-gold"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-white mb-4">Data &amp; Visibility</h3>
+          <p class="text-stone/60 text-sm leading-relaxed">
+            Product ecosystems that connect device data with dashboards, alerts, records, and operational information.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 sm:p-8 rounded-xl border-t-2 border-t-green">
+          <div class="w-11 h-11 rounded-lg bg-green/10 border border-green flex items-center justify-center mb-5">
+            <i class="fa-solid fa-gears text-gold"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-white mb-4">Practical Automation</h3>
+          <p class="text-stone/60 text-sm leading-relaxed">
+            Connected systems that help reduce repetitive monitoring, improve response time, and make everyday processes more measurable.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-10 sm:mt-16 text-center">
+        <a href="#contact" class="btn-premium-solid no-underline py-3 px-6 sm:px-8 text-sm">Talk About Your Requirement</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page-section py-16 sm:py-20 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center min-h-[50vh]">
+        <div class="col-span-12 lg:col-span-7">
+          <div class="font-mono text-gold text-xs sm:text-sm tracking-widest mb-3">ABOUT LAUNCHGRID</div>
+          <h2 class="section-title font-extrabold text-white mb-8">Engineering Products for Connected Environments.</h2>
+
+          <p class="text-base sm:text-lg text-stone/70 mb-6 leading-relaxed font-light">
+            LaunchGrid Technologies is a technology company focused on developing products at the intersection of electronics, embedded systems, industrial connectivity, and IoT.
+          </p>
+
+          <p class="text-base sm:text-lg text-stone/70 mb-10 leading-relaxed font-light">
+            We are building an initial product portfolio around healthcare monitoring, smart-home hardware, industrial protocol connectivity, and connected IoT systems. The long-term objective is to turn useful engineering ideas into dependable products that can be deployed repeatedly.
+          </p>
+
+          <h3 class="text-gold font-bold uppercase tracking-widest text-sm mb-4">What Guides Us</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-stone/80 text-sm font-semibold">
+            <div><i class="fa-solid fa-check text-green mr-2"></i> Practical Engineering</div>
+            <div><i class="fa-solid fa-check text-green mr-2"></i> Product Thinking</div>
+            <div><i class="fa-solid fa-check text-green mr-2"></i> Reliable Technology</div>
+            <div><i class="fa-solid fa-check text-green mr-2"></i> Long-Term Scalability</div>
+          </div>
+        </div>
+
+        <div class="col-span-12 lg:col-span-5">
+          <div class="glass-card p-6 sm:p-8 lg:p-10 rounded-2xl relative overflow-hidden">
+            <div class="absolute -top-20 -right-20 w-40 h-40 bg-gold/20 blur-3xl rounded-full"></div>
+            <div class="font-mono text-gold text-xs tracking-widest mb-3">OUR DIRECTION</div>
+            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4">Ideas. Technology. Real Impact.</h3>
+            <div class="w-12 h-1 bg-gold mb-6"></div>
+            <p class="text-lg sm:text-xl text-stone/80 italic font-light leading-relaxed">
+              Build useful technology, turn it into dependable products, and make connected systems easier to use.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / REQUEST QUOTE (same-page section) -->
+    <section id="contact" class="page-section py-16 sm:py-20 lg:py-24">
+      <div class="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
+        <div class="font-mono text-gold text-xs sm:text-sm tracking-widest mb-3">REQUEST A QUOTE</div>
+        <h2 class="section-title font-extrabold text-white mb-5">Let's Build the Next Product.</h2>
+        <p class="section-copy text-stone/60 font-light">
+          Tell us what you are building, monitoring, connecting, or planning to bring to market.
+          We will review your requirement and identify the relevant LaunchGrid product or technology vertical.
+        </p>
+      </div>
+
+      <div class="contact-layout max-w-6xl mx-auto">
+        <!-- Visiting-card identity / brand panel -->
+        <aside class="contact-brand glass-card rounded-2xl p-7 sm:p-9 lg:p-10">
+          <div class="contact-brand-glow"></div>
+          <div class="relative z-10">
+            <div class="contact-sphere-wrap">
+              <img src="./assets/images/LaunchGrid_Front_Card_Logo.png"
+                   alt="LaunchGrid Technologies geometric sphere logo"
+                   class="contact-sphere">
+            </div>
+
+            <div class="text-center lg:text-left">
+              <div class="w-12 h-1 bg-gold my-5 mx-auto lg:mx-0"></div>
+              <p class="text-stone/70 text-sm sm:text-base leading-relaxed">
+                Product-led engineering across connected hardware, industrial connectivity, and IoT systems.
+              </p>
+            </div>
+
+            <div class="contact-details mt-7 space-y-3 text-sm">
+              <a href="tel:+919820109697" class="contact-detail no-underline">
+                <span class="contact-detail-icon"><i class="fa-solid fa-phone"></i></span>
+                <span>+91 98201 09697</span>
+              </a>
+              <a href="mailto:sales@launchgridtechnologies.com" class="contact-detail no-underline">
+                <span class="contact-detail-icon"><i class="fa-solid fa-envelope"></i></span>
+                <span>sales@launchgridtechnologies.com</span>
+              </a>
+              <div class="contact-detail">
+                <span class="contact-detail-icon"><i class="fa-solid fa-location-dot"></i></span>
+                <span>Mumbai, India</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Request form -->
+        <div class="glass-card p-5 sm:p-8 md:p-10 lg:p-12 rounded-2xl">
+          <form id="contactForm"
+                action="https://api.web3forms.com/submit"
+                method="POST"
+                class="space-y-5 sm:space-y-6">
+
+            <input type="hidden" name="access_key" value="7c3d528d-a304-47bf-a8ce-eeff35098a3a">
+            <input type="hidden" name="subject" value="New LaunchGrid Technologies Website Enquiry">
+            <input type="hidden" name="from_name" value="LaunchGrid Technologies Website">
+            <input type="hidden" name="redirect" value="https://launchgridtechnologies.com/thankyou.html">
+
+            <!-- Honeypot spam protection -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display:none">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+              <div>
+                <label for="name" class="block text-stone/80 text-xs font-bold uppercase tracking-wider mb-2">Full Name</label>
+                <input id="name" type="text" name="name" required autocomplete="name"
+                       class="form-input"
+                       placeholder="Your name">
+              </div>
+
+              <div>
+                <label for="company" class="block text-stone/80 text-xs font-bold uppercase tracking-wider mb-2">Company</label>
+                <input id="company" type="text" name="company" autocomplete="organization"
+                       class="form-input"
+                       placeholder="Company / organisation">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+              <div>
+                <label for="email" class="block text-stone/80 text-xs font-bold uppercase tracking-wider mb-2">Email Address</label>
+                <input id="email" type="email" name="email" required autocomplete="email"
+                       class="form-input"
+                       placeholder="you@company.com">
+              </div>
+
+              <div>
+                <label for="phone" class="block text-stone/80 text-xs font-bold uppercase tracking-wider mb-2">Phone</label>
+                <input id="phone" type="tel" name="phone" autocomplete="tel"
+                       class="form-input"
+                       placeholder="+91">
+              </div>
+            </div>
+
+            <div>
+              <label for="service" class="block text-stone/80 text-xs font-bold uppercase tracking-wider mb-2">Requirement</label>
+              <select id="service" name="service" required class="form-input appearance-none">
+                <option value="" selected disabled>Select a vertical</option>
+                <option>Hardware &amp; Edge</option>
+                <option>Industrial Protocol Gateways</option>
+                <option>IoT and Business Solutions</option>
+                <option>Product / Technology Enquiry</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message" class="block text-stone/80 text-xs font-bold uppercase tracking-wider mb-2">Requirement Details</label>
+              <textarea id="message" name="message" required
+                        class="form-input min-h-40 resize-y"
+                        placeholder="Briefly describe what you are looking for..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-premium-solid w-full rounded-lg justify-center py-3.5 sm:py-4 text-base sm:text-lg">
+              Send Enquiry <i class="fa-solid fa-paper-plane ml-2"></i>
+            </button>
+
+            <p class="text-center text-xs text-stone/40">
+              Your enquiry is submitted securely through Web3Forms.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#051329] border-t border-white/10 pt-12 sm:pt-16 pb-8 mt-auto relative z-10 w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start mb-10 sm:mb-12">
+        <div class="col-span-12 md:col-span-5">
+          <a href="#home" class="flex items-center mb-4 no-underline">
+            <img src="./assets/images/LaunchGrid_Navbar_Logo.png" alt="LaunchGrid Technologies" class="footer-logo object-contain" width="250" height="167">
+          </a>
+          <p class="text-sm text-stone/50 font-light leading-relaxed max-w-sm">
+            Product-led engineering across Hardware &amp; Edge, Industrial Protocol Gateways, and IoT and Business Solutions.
+          </p>
+        </div>
+
+        <div class="col-span-12 md:col-span-3">
+          <h3 class="text-white text-sm font-bold tracking-widest uppercase mb-4">Verticals</h3>
+          <ul class="list-none p-0 space-y-2 text-sm text-stone/60">
+            <li><a href="#hardware" class="hover:text-gold transition-colors no-underline text-inherit">Hardware &amp; Edge</a></li>
+            <li><a href="#software" class="hover:text-gold transition-colors no-underline text-inherit">Industrial Protocol Gateways</a></li>
+            <li><a href="#iot" class="hover:text-gold transition-colors no-underline text-inherit">IoT and Business Solutions</a></li>
+          </ul>
+        </div>
+
+        <div class="col-span-12 md:col-span-4 md:text-right">
+          <h3 class="text-white text-sm font-bold tracking-widest uppercase mb-4">Connect</h3>
+          <div class="flex gap-3 sm:gap-4 md:justify-end">
+            <a href="mailto:sales@launchgridtechnologies.com" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-stone hover:bg-gold hover:text-[#051329] transition-all no-underline" aria-label="Email LaunchGrid">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="#contact" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-stone hover:bg-gold hover:text-[#051329] transition-all no-underline" aria-label="Request a quote">
+              <i class="fa-solid fa-paper-plane"></i>
+            </a>
+          </div>
+          <p class="text-sm text-stone/50 mt-4 md:text-right">Mumbai, India</p>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-stone/40 font-mono gap-3">
+        <p>© 2026 LaunchGrid Technologies. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#home" class="hover:text-stone transition-colors no-underline text-inherit">Privacy Policy</a>
+          <a href="#home" class="hover:text-stone transition-colors no-underline text-inherit">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.nav-mobile-link');
+
+    function updateNavbar() {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }
+
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    updateNavbar();
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', String(!isHidden));
+      mobileMenuBtn.innerHTML = isHidden
+        ? '<i class="fas fa-bars"></i>'
+        : '<i class="fas fa-xmark"></i>';
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+
+    function handleRouting() {
+      let hash = window.location.hash.substring(1) || 'home';
+
+      if (hash === 'services') hash = 'hardware';
+
+      document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      document.querySelectorAll('.nav-link-custom').forEach(link => {
+        link.classList.remove('active-link');
+      });
+
+      const target = document.getElementById(hash);
+
+      if (target) {
+        target.classList.add('active');
+        const activeLink = document.querySelector(`.nav-link-custom[href="#${hash}"]`);
+        if (activeLink) activeLink.classList.add('active-link');
+      } else {
+        document.getElementById('home').classList.add('active');
+        const homeLink = document.querySelector('.nav-link-custom[href="#home"]');
+        if (homeLink) homeLink.classList.add('active-link');
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    window.addEventListener('hashchange', handleRouting);
+    window.addEventListener('DOMContentLoaded', handleRouting);
+  </script>
 </body>
 </html>
